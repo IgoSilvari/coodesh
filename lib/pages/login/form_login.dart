@@ -59,17 +59,17 @@ class _FormLoginState extends State<FormLogin> {
             Column(
               children: [
                 WidgetFormFieldDefaut(
-                  title: 'E-mail',
-                  hintText: 'E-mail',
+                  title: 'Email',
+                  hintText: 'Email',
                   controller: controllerEmail,
                   textInputType: TextInputType.emailAddress,
                   textCapitalization: TextCapitalization.none,
                   validator: (value) {
                     final isValid = EmailValidator.validate(value ?? '');
                     if (value?.isEmpty ?? true) {
-                      return 'É obrigatorio informar o email';
+                      return 'It is mandatory to inform the email';
                     } else if (!isValid) {
-                      return 'E-mail informado é invalido';
+                      return 'Email provided is invalid';
                     }
                     return null;
                   },
@@ -77,7 +77,7 @@ class _FormLoginState extends State<FormLogin> {
                 Observer(
                   builder: (_) {
                     return WidgetFormFieldDefaut(
-                      title: 'Senha',
+                      title: 'Password',
                       hintText: '******',
                       controller: controllerPassword,
                       textInputType: TextInputType.visiblePassword,
@@ -97,9 +97,9 @@ class _FormLoginState extends State<FormLogin> {
                       isVisibleSuffix: true,
                       validator: (value) {
                         if (value?.isEmpty ?? true) {
-                          return 'É obrigatorio informar a senha';
+                          return 'It is mandatory to enter the password';
                         } else if ((value?.length ?? 0) < 6) {
-                          return 'A senha deve conter no minimo 6 caracteres';
+                          return 'The password must contain at least 6 characters';
                         }
                         return null;
                       },

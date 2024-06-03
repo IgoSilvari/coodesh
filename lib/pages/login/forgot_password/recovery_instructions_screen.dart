@@ -91,38 +91,38 @@ class _RecoveryInstructionsPageState extends State<RecoveryInstructionsPage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 WidgetFormFieldDefaut(
-                                  title: 'Nova Senha',
+                                  title: 'New Password',
                                   controller: newPasswordController,
-                                  hintText: 'Nova senha',
+                                  hintText: 'New Password',
                                   colorTitle: Colors.white,
                                   textInputAction: TextInputAction.next,
                                   textInputType: TextInputType.text,
                                   textCapitalization: TextCapitalization.none,
                                   validator: (value) {
                                     if (value?.isEmpty ?? true) {
-                                      return 'É obrigatorio informar uma senha';
+                                      return 'It is mandatory to enter a password';
                                     } else if ((value?.length ?? 0) < 6) {
-                                      return 'A senha deve conter no minimo 6 caracteres ';
+                                      return 'The password must contain at least 6 characters ';
                                     }
                                     return null;
                                   },
                                 ),
                                 WidgetFormFieldDefaut(
-                                  title: 'Confirmar nova senha',
+                                  title: 'Confirm new password',
                                   controller: newPasswordConfirmsixController,
-                                  hintText: 'Confirmar nova senha',
+                                  hintText: 'Confirm new password',
                                   colorTitle: Colors.white,
                                   textInputAction: TextInputAction.done,
                                   textCapitalization: TextCapitalization.none,
                                   textInputType: TextInputType.text,
                                   validator: (value) {
                                     if (value?.isEmpty ?? true) {
-                                      return 'É obrigatorio informar uma senha';
+                                      return 'It is mandatory to enter a password';
                                     } else if ((value?.length ?? 0) < 6) {
-                                      return 'A senha deve conter no minimo 6 caracteres';
+                                      return 'The password must contain at least 6 characters';
                                     } else if (newPasswordController.text !=
                                         value) {
-                                      return 'A senha e a confirmação devem ser iguais ';
+                                      return 'Password and confirmation must be the same ';
                                     }
                                     return null;
                                   },
@@ -134,7 +134,7 @@ class _RecoveryInstructionsPageState extends State<RecoveryInstructionsPage> {
                       ),
                     ),
                     ButtonStandard(
-                      title: 'Redefinir senha',
+                      title: 'Redefine password',
                       onPressed: () => actionButton(context),
                     ),
                   ],
@@ -163,13 +163,13 @@ class _RecoveryInstructionsPageState extends State<RecoveryInstructionsPage> {
         Navigator.pop(context);
         NotificationMessage.message(
           context: context,
-          firstText: 'Senha atualizada com ',
+          firstText: 'Password updated with ',
           highlightedWord: 'sucesso',
         );
       } else {
         NotificationMessageErro.message(
           statusLoad: statusLoad,
-          text: 'Não foi possivel atualizar a senha.',
+          text: 'Unable to update password.',
           context: context,
         );
       }

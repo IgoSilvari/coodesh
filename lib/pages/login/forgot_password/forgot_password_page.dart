@@ -45,7 +45,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           body: OverlayLoadingStandard(
             isVisible: requestForgot.isExecution,
             child: BackgraundDefaut(
-              title: 'Verificar usuario',
+              title: 'Verify user',
               onPressedLeading: () => Navigator.pop(context),
               child: SingleChildScrollView(
                 child: Container(
@@ -58,8 +58,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       Form(
                         key: _formKey,
                         child: WidgetFormFieldDefaut(
-                          title: 'E-mail',
-                          hintText: 'E-mail',
+                          title: 'Email',
+                          hintText: 'Email',
                           controller: controllerEmail,
                           textInputType: TextInputType.emailAddress,
                           textCapitalization: TextCapitalization.none,
@@ -68,16 +68,16 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                             final isValid =
                                 EmailValidator.validate(value ?? '');
                             if (value?.isEmpty ?? true) {
-                              return 'É obrigatorio informar o email';
+                              return 'It is mandatory to inform the email';
                             } else if (!isValid) {
-                              return 'E-mail informado é invalido';
+                              return 'Email provided is invalid';
                             }
                             return null;
                           },
                         ),
                       ),
                       ButtonStandard(
-                        title: 'Recuperar senha',
+                        title: 'Recover Password',
                         onPressed: actionButton,
                       ),
                     ],

@@ -75,22 +75,22 @@ class _RegisterPageState extends State<RegisterPage> {
                       Column(
                         children: [
                           WidgetFormFieldDefaut(
-                            title: 'Nome',
-                            hintText: 'Informe seu nome',
+                            title: 'Name',
+                            hintText: 'Enter your name',
                             controller: controllerName,
                             textInputAction: TextInputAction.next,
                             textInputType: TextInputType.text,
                             textCapitalization: TextCapitalization.words,
                             validator: (value) {
                               if (value?.isEmpty ?? true) {
-                                return 'É obrigatorio informar um nome';
+                                return 'It is mandatory to provide a name';
                               }
                               return null;
                             },
                           ),
                           WidgetFormFieldDefaut(
-                            title: 'E-mail',
-                            hintText: 'E-mail',
+                            title: 'Email',
+                            hintText: 'Email',
                             controller: controllerEmail,
                             textInputType: TextInputType.emailAddress,
                             textInputAction: TextInputAction.next,
@@ -99,9 +99,9 @@ class _RegisterPageState extends State<RegisterPage> {
                               final isValid =
                                   EmailValidator.validate(value ?? '');
                               if (value?.isEmpty ?? true) {
-                                return 'É obrigatorio informar o email';
+                                return 'It is mandatory to inform the email';
                               } else if (!isValid) {
-                                return 'E-mail informado é invalido';
+                                return 'Email provided is invalid';
                               }
                               return null;
                             },
@@ -109,7 +109,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           Observer(
                             builder: (_) {
                               return WidgetFormFieldDefaut(
-                                title: 'Senha',
+                                title: 'Password',
                                 hintText: '******',
                                 controller: controllerPassword,
                                 textInputType: TextInputType.visiblePassword,
@@ -130,9 +130,9 @@ class _RegisterPageState extends State<RegisterPage> {
                                 isVisibleSuffix: true,
                                 validator: (value) {
                                   if (value?.isEmpty ?? true) {
-                                    return 'É obrigatorio informar a senha';
+                                    return 'It is mandatory to enter the password';
                                   } else if ((value?.length ?? 0) < 6) {
-                                    return 'A senha deve conter no minimo 6 caracteres';
+                                    return 'The password must contain at least 6 characters';
                                   }
                                   return null;
                                 },
@@ -142,7 +142,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           Observer(
                             builder: (_) {
                               return WidgetFormFieldDefaut(
-                                title: 'Confirmar Senha',
+                                title: 'Confirm password',
                                 hintText: '******',
                                 controller: controllerConfirmPassword,
                                 textInputType: TextInputType.visiblePassword,
@@ -163,11 +163,11 @@ class _RegisterPageState extends State<RegisterPage> {
                                 isVisibleSuffix: true,
                                 validator: (value) {
                                   if (value?.isEmpty ?? true) {
-                                    return 'É obrigatorio informar a senha';
+                                    return 'It is mandatory to enter the password';
                                   } else if ((value?.length ?? 0) < 6) {
-                                    return 'A senha deve conter no minimo 6 caracteres';
+                                    return 'The password must contain at least 6 characters';
                                   } else if (controllerPassword.text != value) {
-                                    return 'As senhas devem ser iguais';
+                                    return 'Passwords must be the same';
                                   }
                                   return null;
                                 },
