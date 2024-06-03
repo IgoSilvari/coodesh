@@ -1,12 +1,11 @@
 import 'dart:io';
 import 'package:coodesh/colors.dart';
 import 'package:coodesh/helper/models_utils.dart';
-import 'package:coodesh/helper/notification_message.dart';
 import 'package:coodesh/store/data_user_logged_store.dart';
 import 'package:coodesh/store/profile/controller_image_profile_store.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class WidgetChangeAvatar extends StatelessWidget {
@@ -109,25 +108,14 @@ class WidgetChangeAvatar extends StatelessWidget {
   }
 
   Future<void> selectedImage(context) async {
-    final FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.image,
-      allowMultiple: false,
-    );
+    final imagePicker = ImagePicker();
+    final file = await imagePicker.pickImage(source: ImageSource.gallery);
 
-    if (result != null) {
+    if (file != null) {
       final controllerImage =
           Provider.of<ControllerImageProfileStore>(context, listen: false);
 
-      controllerImage.changeLocalImage(result.files[0].path!);
-
-      final PlatformFile inforFile = result.files.first;
-      if (inforFile.size > 9291456) {
-        NotificationMessage.message(
-          firstText: 'O tamanho maximo é ',
-          highlightedWord: '10M',
-          context: context,
-        );
-      }
+      controllerImage.changeLocalImage(file.path);
     }
   }
 }

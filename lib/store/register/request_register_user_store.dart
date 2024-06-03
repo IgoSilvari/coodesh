@@ -1,6 +1,6 @@
 import 'package:coodesh/database/user_dao/user_dao.dart';
 import 'package:coodesh/helper/status_loading.dart';
-import 'package:coodesh/model/keyword_shared_preferences.dart';
+import 'package:coodesh/helper/keyword_shared_preferences.dart';
 import 'package:coodesh/model/user_model.dart';
 import 'package:coodesh/router.dart';
 import 'package:coodesh/store/data_user_logged_store.dart';

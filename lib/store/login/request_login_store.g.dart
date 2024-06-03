@@ -50,7 +50,7 @@ mixin _$RequestLoginStore on RequestLoginStoreBase, Store {
       AsyncAction('RequestLoginStoreBase.login', context: context);
 
   @override
-  Future<DataValidateCredential> login(
+  Future<DataValidateCredentialModel> login(
       {required String email, required String password}) {
     return _$loginAsyncAction
         .run(() => super.login(email: email, password: password));

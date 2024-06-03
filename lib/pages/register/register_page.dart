@@ -205,7 +205,8 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
       );
       if (StatusLoad.success == statusLoad) {
-        if (context.mounted) {}
+        if (!mounted) return;
+        Navigator.of(context).pushReplacementNamed(AppRouter.homePage);
       } else {
         if (!mounted) return;
         NotificationMessageErro.message(

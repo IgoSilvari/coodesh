@@ -1,5 +1,6 @@
 import 'package:coodesh/helper/notification_message_erro.dart';
 import 'package:coodesh/helper/status_loading.dart';
+import 'package:coodesh/router.dart';
 import 'package:coodesh/store/login/controller_password_store.dart';
 import 'package:coodesh/store/login/request_login_store.dart';
 import 'package:coodesh/pages/login/not_account.dart';
@@ -129,7 +130,8 @@ class _FormLoginState extends State<FormLogin> {
 
       final result = await requestLogin.login(email: email, password: password);
       if (StatusLoad.success == result.statusLoad) {
-        if (context.mounted) {}
+        if (!mounted) return;
+        Navigator.of(context).pushReplacementNamed(AppRouter.homePage);
       } else {
         if (!mounted) return;
         NotificationMessageErro.message(

@@ -10,14 +10,16 @@ enum StatusLoad {
   existingUser,
 }
 
-StatusLoad verificLoading(int? statusCode) {
+StatusLoad verificStatus(int? statusCode) {
   if ((statusCode ?? 0) <= 299 && (statusCode ?? 0) >= 200) {
     return StatusLoad.success;
-  } else if (statusCode == 500) {
+  } else if ((statusCode ?? 0) >= 500 && (statusCode ?? 0) <= 505) {
     return StatusLoad.failedServe;
   } else if (statusCode == 401) {
     return StatusLoad.authenticationFailure;
   } else if (statusCode == 422) {
+    return StatusLoad.reportedDataError;
+  } else if (statusCode == 400) {
     return StatusLoad.reportedDataError;
   } else {
     return StatusLoad.failed;

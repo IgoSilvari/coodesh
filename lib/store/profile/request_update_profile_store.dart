@@ -25,7 +25,7 @@ abstract class RequestUpdateProfileStoreBase with Store {
       !isExecution && !isSuccess && statusLoad != StatusLoad.none;
 
   @action
-  Future<StatusLoad> updateAddress({required UserModel user}) async {
+  Future<StatusLoad> updateProfile({required UserModel user}) async {
     statusLoad = StatusLoad.executing;
     await Future.delayed(const Duration(milliseconds: 500));
     statusLoad = await UserDao().updateDataUser(user: user);
@@ -36,7 +36,7 @@ abstract class RequestUpdateProfileStoreBase with Store {
   }
 
   @action
-  Future<void> updateUserData(UserModel? user) async {
+  void updateUserData(UserModel? user) {
     final context = AppRouter.navigatorKey.currentContext;
     Provider.of<DataUserLoggedStore>(context!, listen: false).changeUser(user);
   }

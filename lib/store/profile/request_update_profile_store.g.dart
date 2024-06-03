@@ -46,23 +46,28 @@ mixin _$RequestUpdateProfileStore on RequestUpdateProfileStoreBase, Store {
     });
   }
 
-  late final _$updateAddressAsyncAction = AsyncAction(
-      'RequestUpdateProfileStoreBase.updateAddress',
+  late final _$updateProfileAsyncAction = AsyncAction(
+      'RequestUpdateProfileStoreBase.updateProfile',
       context: context);
 
   @override
-  Future<StatusLoad> updateAddress({required UserModel user}) {
-    return _$updateAddressAsyncAction
-        .run(() => super.updateAddress(user: user));
+  Future<StatusLoad> updateProfile({required UserModel user}) {
+    return _$updateProfileAsyncAction
+        .run(() => super.updateProfile(user: user));
   }
 
-  late final _$updateUserDataAsyncAction = AsyncAction(
-      'RequestUpdateProfileStoreBase.updateUserData',
-      context: context);
+  late final _$RequestUpdateProfileStoreBaseActionController =
+      ActionController(name: 'RequestUpdateProfileStoreBase', context: context);
 
   @override
-  Future<void> updateUserData(UserModel? user) {
-    return _$updateUserDataAsyncAction.run(() => super.updateUserData(user));
+  void updateUserData(UserModel? user) {
+    final _$actionInfo = _$RequestUpdateProfileStoreBaseActionController
+        .startAction(name: 'RequestUpdateProfileStoreBase.updateUserData');
+    try {
+      return super.updateUserData(user);
+    } finally {
+      _$RequestUpdateProfileStoreBaseActionController.endAction(_$actionInfo);
+    }
   }
 
   @override

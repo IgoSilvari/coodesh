@@ -1,6 +1,6 @@
 import 'package:coodesh/colors.dart';
 import 'package:coodesh/database/user_dao/user_dao.dart';
-import 'package:coodesh/model/keyword_shared_preferences.dart';
+import 'package:coodesh/helper/keyword_shared_preferences.dart';
 import 'package:coodesh/router.dart';
 import 'package:coodesh/store/data_user_logged_store.dart';
 import 'package:flutter/material.dart';

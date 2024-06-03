@@ -133,7 +133,7 @@ class _ProfilePageState extends State<ProfilePage> {
       bool isNotEmpty = controllerImageProfile.localImage.isNotEmpty;
       final localImage = controllerImageProfile.localImage;
       final pictureData = dataUserLogged.userData?.picture;
-      final statusLoad = await updateProfile.updateAddress(
+      final statusLoad = await updateProfile.updateProfile(
         user: UserModel(
           id: dataUserLogged.userData!.id!,
           email: controllerEmail.text,

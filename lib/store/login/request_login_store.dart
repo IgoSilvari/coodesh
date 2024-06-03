@@ -1,7 +1,7 @@
 import 'package:coodesh/database/user_dao/user_dao.dart';
 import 'package:coodesh/helper/status_loading.dart';
-import 'package:coodesh/model/keyword_shared_preferences.dart';
-import 'package:coodesh/model/return_validate_credential.dart';
+import 'package:coodesh/helper/keyword_shared_preferences.dart';
+import 'package:coodesh/model/return_validate_credential_model.dart';
 import 'package:coodesh/model/user_model.dart';
 import 'package:coodesh/router.dart';
 import 'package:coodesh/store/data_user_logged_store.dart';
@@ -28,12 +28,14 @@ abstract class RequestLoginStoreBase with Store {
       !isExecution && !isSuccess && statusLoad != StatusLoad.none;
 
   @action
-  Future<DataValidateCredential> login(
+  Future<DataValidateCredentialModel> login(
       {required String email, required String password}) async {
     statusLoad = StatusLoad.executing;
     await Future.delayed(const Duration(milliseconds: 500));
-    final result =
-        await UserDao().validateCredentials(email: email, password: password);
+    final result = await UserDao().validateCredentials(
+      email: email,
+      password: password,
+    );
     if (result.isRegistered ?? false) {
       updateUserData(result.user);
       statusLoad = StatusLoad.success;
@@ -51,6 +53,9 @@ abstract class RequestLoginStoreBase with Store {
     final context = AppRouter.navigatorKey.currentContext;
     final prefs = await SharedPreferences.getInstance();
     prefs.setInt(KeywordShared.idUser.name, user?.id ?? 0);
-    Provider.of<DataUserLoggedStore>(context!, listen: false).changeUser(user);
+    if (context?.mounted ?? false) {
+      Provider.of<DataUserLoggedStore>(context!, listen: false)
+          .changeUser(user);
+    }
   }
 }

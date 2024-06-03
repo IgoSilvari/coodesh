@@ -19,6 +19,8 @@ class CoodeshColor {
 
   static const defaultRedColor = Color(0xFFFF0930);
   static const defaultOrangeColor = Color(0xFFFE8E04);
+  static const colorWhiteSubtitle = Colors.white70;
+  static const colorWhiteTitle = Colors.white;
 
   static LinearGradient linearGradient = const LinearGradient(
     colors: [

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:coodesh/database/database.dart';
 import 'package:coodesh/helper/status_loading.dart';
-import 'package:coodesh/model/return_validate_credential.dart';
+import 'package:coodesh/model/return_validate_credential_model.dart';
 import 'package:coodesh/model/user_model.dart';
 import 'package:crypto/crypto.dart';
 
@@ -75,7 +75,7 @@ class UserDao {
     return result.contains(true);
   }
 
-  Future<DataValidateCredential> validateCredentials(
+  Future<DataValidateCredentialModel> validateCredentials(
       {required String email, required String password}) async {
     List<UserModel> listUsers = await findAll();
     UserModel? newUser;
@@ -87,7 +87,7 @@ class UserDao {
       }
       return isContainsEmail && isContainsPassword;
     });
-    return DataValidateCredential(isRegistered: result, user: newUser);
+    return DataValidateCredentialModel(isRegistered: result, user: newUser);
   }
 
   String encodePassword(String password) {

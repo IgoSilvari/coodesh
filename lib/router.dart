@@ -1,4 +1,6 @@
 import 'package:coodesh/pages/home/home_page.dart';
+import 'package:coodesh/pages/home/view_word_translation/view_word_translation_page.dart';
+import 'package:coodesh/store/favorite_word/favorite_word_store.dart';
 import 'package:coodesh/store/forgot_password/request_forgot_password_store.dart';
 import 'package:coodesh/store/login/controller_animated_login_store.dart';
 import 'package:coodesh/store/login/controller_password_store.dart';
@@ -11,6 +13,8 @@ import 'package:coodesh/pages/login/forgot_password/recovery_instructions_screen
 import 'package:coodesh/pages/login/login_page.dart';
 import 'package:coodesh/pages/profile/profile_page.dart';
 import 'package:coodesh/pages/register/register_page.dart';
+import 'package:coodesh/store/word_translaton/controller_progress_audio_store.dart';
+import 'package:coodesh/store/word_translaton/request_word_translation_store.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -25,6 +29,7 @@ class AppRouter extends Router {
   static const recoveryInstructionsPage = '/recoveryInstructionsPage';
   static const profilePage = '/profilePage';
   static const homePage = '/homePage';
+  static const viewWordTranslationPage = '/viewWordTranslationPage';
 
   @override
   Route generateRoute(RouteSettings settings) {
@@ -90,6 +95,19 @@ class AppRouter extends Router {
               Provider(create: (_) => ControllerImageProfileStore()),
             ],
             child: const HomePage(),
+          );
+        };
+      case viewWordTranslationPage:
+        builder = (context) {
+          return MultiProvider(
+            providers: [
+              Provider(create: (_) => RequestWordTranslationStore()),
+              Provider(create: (_) => ControllerProgressAudioStore()),
+              Provider(create: (_) => FavoriteWordStore()),
+            ],
+            child: ViewWordTranslationPage(
+              word: settings.arguments as String,
+            ),
           );
         };
 
