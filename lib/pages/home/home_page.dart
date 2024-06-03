@@ -1,6 +1,7 @@
 import 'package:coodesh/colors.dart';
 import 'package:coodesh/pages/home/app_bar/app_bar_home.dart';
 import 'package:coodesh/pages/home/tab_favorite_list/tab_favorite_list.dart';
+import 'package:coodesh/pages/home/tab_history_list/tab_history_list.dart';
 import 'package:coodesh/pages/home/tab_word_list/tab_word_list.dart';
 import 'package:coodesh/store/favorite_word/favorite_word_store.dart';
 import 'package:coodesh/store/home/controller_dictionary_store.dart';
@@ -58,7 +59,7 @@ class _HomePageState extends State<HomePage>
             controller: _tabController,
             children: [
               const TabWordList(),
-              const Text('Histoy'),
+              const TabHistoryList(),
               Provider(
                 create: (context) => FavoriteWordStore(),
                 child: const TabFavoriteList(),

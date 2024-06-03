@@ -81,6 +81,41 @@ mixin _$RequestWordTranslationStore on RequestWordTranslationStoreBase, Store {
         .run(() => super.getWordTranslation(word: word));
   }
 
+  late final _$getWordTranslationServeAsyncAction = AsyncAction(
+      'RequestWordTranslationStoreBase.getWordTranslationServe',
+      context: context);
+
+  @override
+  Future<void> getWordTranslationServe(String word) {
+    return _$getWordTranslationServeAsyncAction
+        .run(() => super.getWordTranslationServe(word));
+  }
+
+  late final _$getWordTranslationHistoryAsyncAction = AsyncAction(
+      'RequestWordTranslationStoreBase.getWordTranslationHistory',
+      context: context);
+
+  @override
+  Future<void> getWordTranslationHistory(String word) {
+    return _$getWordTranslationHistoryAsyncAction
+        .run(() => super.getWordTranslationHistory(word));
+  }
+
+  late final _$RequestWordTranslationStoreBaseActionController =
+      ActionController(
+          name: 'RequestWordTranslationStoreBase', context: context);
+
+  @override
+  void addItemHistory(String? word) {
+    final _$actionInfo = _$RequestWordTranslationStoreBaseActionController
+        .startAction(name: 'RequestWordTranslationStoreBase.addItemHistory');
+    try {
+      return super.addItemHistory(word);
+    } finally {
+      _$RequestWordTranslationStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''

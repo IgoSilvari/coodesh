@@ -1,48 +1,32 @@
 import 'package:coodesh/pages/home/tab_word_list/card_word_list.dart';
 import 'package:coodesh/pages/home/view_word_translation/no_definitions_found.dart';
-import 'package:coodesh/store/favorite_word/favorite_word_store.dart';
+import 'package:coodesh/store/history/controller_history_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 
-class TabFavoriteList extends StatefulWidget {
-  const TabFavoriteList({Key? key}) : super(key: key);
-
-  @override
-  State<TabFavoriteList> createState() => _TabFavoriteListState();
-}
-
-class _TabFavoriteListState extends State<TabFavoriteList> {
-  @override
-  void initState() {
-    getFavorites();
-    super.initState();
-  }
-
-  Future<void> getFavorites() async {
-    final favoriteWord = Provider.of<FavoriteWordStore>(context, listen: false);
-    await favoriteWord.getFavorites();
-  }
+class TabHistoryList extends StatelessWidget {
+  const TabHistoryList({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final favoriteWord = Provider.of<FavoriteWordStore>(context, listen: false);
+    final controllerHistory =
+        Provider.of<ControllerHistoryStore>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
       child: Observer(
         builder: (context) {
           return Visibility(
-            visible: favoriteWord.favoriteList.isNotEmpty,
+            visible: controllerHistory.historyList.isNotEmpty,
             replacement: const Center(
               child: NoDefinitionsFound(
                 title: "There's nothing here yet",
-                subTitle:
-                    'When you favorite one of the words, it will be displayed here!',
+                subTitle: '',
               ),
             ),
             child: Observer(builder: (_) {
               return GridView.builder(
-                itemCount: favoriteWord.favoriteList.length,
+                itemCount: controllerHistory.historyList.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
                   crossAxisSpacing: 8,
@@ -50,8 +34,8 @@ class _TabFavoriteListState extends State<TabFavoriteList> {
                   mainAxisExtent: 100,
                 ),
                 itemBuilder: (context, index) {
-                  final word = favoriteWord.favoriteList[index];
-                  return CardWordList(word: word.word);
+                  final wordDefinitions = controllerHistory.historyList[index];
+                  return CardWordList(word: wordDefinitions?.word);
                 },
               );
             }),

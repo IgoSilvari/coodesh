@@ -101,6 +101,14 @@ mixin _$FavoriteWordStore on FavoriteWordStoreBase, Store {
         .run(() => super.checkFavorite(word: word));
   }
 
+  late final _$getFavoritesAsyncAction =
+      AsyncAction('FavoriteWordStoreBase.getFavorites', context: context);
+
+  @override
+  Future<StatusLoad> getFavorites() {
+    return _$getFavoritesAsyncAction.run(() => super.getFavorites());
+  }
+
   @override
   String toString() {
     return '''

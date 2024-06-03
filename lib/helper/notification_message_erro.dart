@@ -13,8 +13,8 @@ class NotificationMessageErro {
       SnackBar(
         backgroundColor: colorCard,
         behavior: SnackBarBehavior.floating,
-        margin: EdgeInsets.only(
-          bottom: MediaQuery.sizeOf(context).height * 0.7,
+        margin: const EdgeInsets.only(
+          // bottom: MediaQuery.sizeOf(context).height * 0.7,
           left: 30,
           right: 30,
         ),

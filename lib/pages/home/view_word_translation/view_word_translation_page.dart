@@ -44,6 +44,7 @@ class _ViewWordTranslationPageState extends State<ViewWordTranslationPage> {
         Provider.of<ControllerProgressAudioStore>(context, listen: false);
     final dictionary =
         Provider.of<ControllerDictionaryStore>(context, listen: false);
+
     wordTranslation.getWordTranslation(word: word);
     controllerProgress.changeText(word);
     dictionary.changeWordSelected(word);

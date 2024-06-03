@@ -1,3 +1,4 @@
+// ignore_for_file: use_build_context_synchronously
 import 'package:coodesh/database/user_dao/user_dao.dart';
 import 'package:coodesh/helper/status_loading.dart';
 import 'package:coodesh/helper/keyword_shared_preferences.dart';

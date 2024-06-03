@@ -54,6 +54,7 @@ abstract class RequestLoginStoreBase with Store {
     final prefs = await SharedPreferences.getInstance();
     prefs.setInt(KeywordShared.idUser.name, user?.id ?? 0);
     if (context?.mounted ?? false) {
+      // ignore: use_build_context_synchronously
       Provider.of<DataUserLoggedStore>(context!, listen: false)
           .changeUser(user);
     }
