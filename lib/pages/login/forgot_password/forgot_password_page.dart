@@ -102,10 +102,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
       if (result == StatusLoad.success) {
         if (!context.mounted) return;
-        Navigator.of(context).pushReplacementNamed(
+        unawaited(Navigator.of(context).pushReplacementNamed(
           AppRouter.recoveryInstructionsPage,
           arguments: controllerEmail.text.trim(),
-        );
+        ));
       } else {
         if (!context.mounted) return;
         NotificationMessageErro.message(

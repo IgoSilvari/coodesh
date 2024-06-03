@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_statements
+
 import 'dart:convert';
 
 import 'package:coodesh/helper/status_loading.dart';
@@ -33,7 +35,7 @@ abstract class ControllerDictionaryStoreBase with Store {
     final words = await rootBundle.loadString(
       'assets/dictionary/words_dictionary.json',
     );
-    Map<String, dynamic> wordsJson = json.decode(words);
+    final Map<String, dynamic> wordsJson = json.decode(words);
 
     final wordsConverted = wordsJson.keys.toList();
     for (indexCurrent; wordsConverted.length >= indexCurrent; indexCurrent++) {

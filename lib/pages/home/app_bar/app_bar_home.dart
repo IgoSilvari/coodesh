@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:coodesh/helper/keyword_shared_preferences.dart';
 import 'package:coodesh/pages/home/app_bar/tap_bar_home.dart';
 import 'package:coodesh/pages/home/app_bar/widget_image_user.dart';
@@ -39,8 +41,8 @@ class AppBarHome extends StatelessWidget implements PreferredSizeWidget {
     final dataUserLogged =
         Provider.of<DataUserLoggedStore>(context, listen: false);
     final prefs = await SharedPreferences.getInstance();
-    prefs.remove(KeywordShared.idUser.name);
+    await prefs.remove(KeywordShared.idUser.name);
     dataUserLogged.cleanUserData();
-    Navigator.of(context).pushReplacementNamed(AppRouter.loginPage);
+    unawaited(Navigator.of(context).pushReplacementNamed(AppRouter.loginPage));
   }
 }

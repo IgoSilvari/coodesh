@@ -43,7 +43,7 @@ abstract class RequestRegisterUserStoreBase with Store {
   Future<void> updateUserData(UserModel? user) async {
     final context = AppRouter.navigatorKey.currentContext;
     final prefs = await SharedPreferences.getInstance();
-    prefs.setInt(KeywordShared.idUser.name, user!.id!);
+    await prefs.setInt(KeywordShared.idUser.name, user!.id!);
     Provider.of<DataUserLoggedStore>(context!, listen: false).changeUser(user);
   }
 }

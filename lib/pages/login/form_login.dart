@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:coodesh/helper/notification_message_erro.dart';
 import 'package:coodesh/helper/status_loading.dart';
 import 'package:coodesh/router.dart';
@@ -131,7 +133,8 @@ class _FormLoginState extends State<FormLogin> {
       final result = await requestLogin.login(email: email, password: password);
       if (StatusLoad.success == result.statusLoad) {
         if (!mounted) return;
-        Navigator.of(context).pushReplacementNamed(AppRouter.homePage);
+        unawaited(
+            Navigator.of(context).pushReplacementNamed(AppRouter.homePage));
       } else {
         if (!mounted) return;
         NotificationMessageErro.message(

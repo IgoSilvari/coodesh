@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:coodesh/colors.dart';
 import 'package:coodesh/database/user_dao/user_dao.dart';
 import 'package:coodesh/helper/keyword_shared_preferences.dart';
@@ -69,11 +71,13 @@ class _SplashScreenState extends State<SplashScreen> {
           final user = await UserDao().getDataUser(idUser);
           dataUserLogged.changeUser(user);
           if (context.mounted) {
-            Navigator.of(context).pushReplacementNamed(AppRouter.homePage);
+            unawaited(
+                Navigator.of(context).pushReplacementNamed(AppRouter.homePage));
           }
         } else {
           if (context.mounted) {
-            Navigator.of(context).pushReplacementNamed(AppRouter.loginPage);
+            unawaited(Navigator.of(context)
+                .pushReplacementNamed(AppRouter.loginPage));
           }
         }
       },

@@ -42,9 +42,9 @@ abstract class RequestWordTranslationStoreBase with Store {
         Provider.of<ControllerHistoryStore>(context, listen: false);
     statusLoad = StatusLoad.executing;
     if (controllerHistory.isContainsWord(word)) {
-      getWordTranslationHistory(word);
+      await getWordTranslationHistory(word);
     } else {
-      getWordTranslationServe(word);
+      await getWordTranslationServe(word);
     }
   }
 

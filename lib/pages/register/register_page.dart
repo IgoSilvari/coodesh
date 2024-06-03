@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:coodesh/database/user_dao/user_dao.dart';
 import 'package:coodesh/helper/notification_message_erro.dart';
 import 'package:coodesh/helper/status_loading.dart';
@@ -206,7 +208,8 @@ class _RegisterPageState extends State<RegisterPage> {
       );
       if (StatusLoad.success == statusLoad) {
         if (!mounted) return;
-        Navigator.of(context).pushReplacementNamed(AppRouter.homePage);
+        unawaited(
+            Navigator.of(context).pushReplacementNamed(AppRouter.homePage));
       } else {
         if (!mounted) return;
         NotificationMessageErro.message(

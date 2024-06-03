@@ -31,9 +31,9 @@ class WidgetProgressSpeak extends StatelessWidget {
             ),
             onPressed: () async {
               if (controllerProgress.isPlay) {
-                _speak(context);
+                await _speak(context);
               } else if (controllerProgress.isPause) {
-                _pause(context);
+                await _pause(context);
               } else if (controllerProgress.isContinue) {}
             },
             icon: Observer(builder: (_) {
@@ -74,7 +74,7 @@ class WidgetProgressSpeak extends StatelessWidget {
   Future _pause(BuildContext context) async {
     final controllerProgress =
         Provider.of<ControllerProgressAudioStore>(context, listen: false);
-    var result = await flutterTts.pause();
+    final result = await flutterTts.pause();
     if (result == 1) {
       controllerProgress.changeProgressAudio(StateProgress.paused);
     }

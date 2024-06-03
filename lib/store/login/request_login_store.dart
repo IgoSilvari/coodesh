@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:coodesh/database/user_dao/user_dao.dart';
 import 'package:coodesh/helper/status_loading.dart';
 import 'package:coodesh/helper/keyword_shared_preferences.dart';
@@ -37,7 +39,7 @@ abstract class RequestLoginStoreBase with Store {
       password: password,
     );
     if (result.isRegistered ?? false) {
-      updateUserData(result.user);
+      await updateUserData(result.user);
       statusLoad = StatusLoad.success;
       result.statusLoad = statusLoad;
       return result;
@@ -52,9 +54,8 @@ abstract class RequestLoginStoreBase with Store {
   Future<void> updateUserData(UserModel? user) async {
     final context = AppRouter.navigatorKey.currentContext;
     final prefs = await SharedPreferences.getInstance();
-    prefs.setInt(KeywordShared.idUser.name, user?.id ?? 0);
+    await prefs.setInt(KeywordShared.idUser.name, user?.id ?? 0);
     if (context?.mounted ?? false) {
-      // ignore: use_build_context_synchronously
       Provider.of<DataUserLoggedStore>(context!, listen: false)
           .changeUser(user);
     }

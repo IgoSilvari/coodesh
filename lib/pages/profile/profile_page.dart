@@ -36,7 +36,7 @@ class _ProfilePageState extends State<ProfilePage> {
   void loadDataUser() {
     final dataUserLogged =
         Provider.of<DataUserLoggedStore>(context, listen: false);
-    UserModel? user = dataUserLogged.userData;
+    final UserModel? user = dataUserLogged.userData;
     controllerName = TextEditingController(text: user?.name ?? '');
     controllerEmail = TextEditingController(text: user?.email ?? '');
   }
@@ -130,7 +130,7 @@ class _ProfilePageState extends State<ProfilePage> {
         Provider.of<DataUserLoggedStore>(context, listen: false);
 
     if (formkey.currentState!.validate()) {
-      bool isNotEmpty = controllerImageProfile.localImage.isNotEmpty;
+      final bool isNotEmpty = controllerImageProfile.localImage.isNotEmpty;
       final localImage = controllerImageProfile.localImage;
       final pictureData = dataUserLogged.userData?.picture;
       final statusLoad = await updateProfile.updateProfile(

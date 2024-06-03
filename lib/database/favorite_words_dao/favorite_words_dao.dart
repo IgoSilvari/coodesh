@@ -63,7 +63,7 @@ class FavoriteWordDao {
   Future<StatusLoad> updateFavorite(
       {required FavoriteWordModel favorite}) async {
     final dataBase = await getDatabase();
-    int updatedQuantity = await dataBase.rawUpdate(
+    final int updatedQuantity = await dataBase.rawUpdate(
       'UPDATE $_tableName SET $_isFavorite = ? WHERE $_word = "${favorite.word}"',
       [
         (favorite.isFavorite ?? false) ? 0 : 1,

@@ -68,7 +68,7 @@ class UserDao {
     final dataBase = await getDatabase();
     final List<bool> result = [];
     final queryData = await dataBase.query(_tableName);
-    for (var element in queryData) {
+    for (final element in queryData) {
       final isExist = element.containsValue(valueSearch);
       result.add(isExist);
     }
@@ -77,11 +77,12 @@ class UserDao {
 
   Future<DataValidateCredentialModel> validateCredentials(
       {required String email, required String password}) async {
-    List<UserModel> listUsers = await findAll();
+    final List<UserModel> listUsers = await findAll();
     UserModel? newUser;
     final result = listUsers.any((element) {
-      bool isContainsEmail = element.email == email;
-      bool isContainsPassword = element.password == encodePassword(password);
+      final bool isContainsEmail = element.email == email;
+      final bool isContainsPassword =
+          element.password == encodePassword(password);
       if (isContainsEmail && isContainsPassword) {
         newUser = element;
       }
@@ -102,7 +103,7 @@ class UserDao {
 
   Future<StatusLoad> updatePassword({required UserModel user}) async {
     final dataBase = await getDatabase();
-    int updatedQuantity = await dataBase.rawUpdate(
+    final int updatedQuantity = await dataBase.rawUpdate(
       'UPDATE $_tableName SET $_password = ?  WHERE $_email = "${user.email}"',
       [
         (encodePassword(user.password!)),
@@ -117,7 +118,7 @@ class UserDao {
 
   Future<StatusLoad> updateDataUser({required UserModel user}) async {
     final dataBase = await getDatabase();
-    int updatedQuantity = await dataBase.rawUpdate(
+    final int updatedQuantity = await dataBase.rawUpdate(
       'UPDATE $_tableName SET $_name = ?, $_email = ?, $_picture = ? WHERE $_id = "${user.id}"',
       ['${user.name}', '${user.email}', '${user.picture}'],
     );

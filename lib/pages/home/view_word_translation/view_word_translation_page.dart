@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:coodesh/colors.dart';
 import 'package:coodesh/pages/home/view_word_translation/app_bar_view_translation.dart';
 import 'package:coodesh/pages/home/view_word_translation/button_back_next_word.dart';
@@ -45,7 +47,7 @@ class _ViewWordTranslationPageState extends State<ViewWordTranslationPage> {
     final dictionary =
         Provider.of<ControllerDictionaryStore>(context, listen: false);
 
-    wordTranslation.getWordTranslation(word: word);
+    unawaited(wordTranslation.getWordTranslation(word: word));
     controllerProgress.changeText(word);
     dictionary.changeWordSelected(word);
     dictionary.activeButton();
@@ -54,9 +56,9 @@ class _ViewWordTranslationPageState extends State<ViewWordTranslationPage> {
   Future<void> setLanguage() async {
     final controllerProgress =
         Provider.of<ControllerProgressAudioStore>(context, listen: false);
-    await flutterTts.setLanguage("en-US");
+    await flutterTts.setLanguage('en-US');
 
-    flutterTts.awaitSpeakCompletion(false);
+    await flutterTts.awaitSpeakCompletion(false);
 
     flutterTts.setProgressHandler((_, int startOffset, int endOffset, __) {
       controllerProgress.changeEndOffset(endOffset);
@@ -70,7 +72,7 @@ class _ViewWordTranslationPageState extends State<ViewWordTranslationPage> {
 
   Future<void> getDataFavorite({required String word}) async {
     final favoriteWord = Provider.of<FavoriteWordStore>(context, listen: false);
-    favoriteWord.checkFavorite(word: word);
+    await favoriteWord.checkFavorite(word: word);
   }
 
   @override
@@ -92,8 +94,8 @@ class _ViewWordTranslationPageState extends State<ViewWordTranslationPage> {
         appBar: const AppBarViewTranslation(),
         bottomNavigationBar: ButtonBackNextWord(
           backNextAction: (value) async {
-            loadDataDictionary(word: value);
-            getDataFavorite(word: value);
+            await loadDataDictionary(word: value);
+            await getDataFavorite(word: value);
           },
         ),
         body: AdaptScreenDimensions(

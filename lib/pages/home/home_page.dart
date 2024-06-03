@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:coodesh/colors.dart';
 import 'package:coodesh/pages/home/app_bar/app_bar_home.dart';
 import 'package:coodesh/pages/home/tab_favorite_list/tab_favorite_list.dart';
@@ -32,7 +34,7 @@ class _HomePageState extends State<HomePage>
   Future<void> getWordDictionary() async {
     final dictionary =
         Provider.of<ControllerDictionaryStore>(context, listen: false);
-    dictionary.loadWord();
+    unawaited(dictionary.loadWord());
   }
 
   @override

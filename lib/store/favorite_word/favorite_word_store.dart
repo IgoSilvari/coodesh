@@ -57,7 +57,7 @@ abstract class FavoriteWordStoreBase with Store {
   Future<StatusLoad> getFavorites() async {
     statusLoad = StatusLoad.executing;
     final favorites = await FavoriteWordDao().findAll();
-    for (var element in favorites) {
+    for (final element in favorites) {
       favoriteList.add(element);
     }
     statusLoad = StatusLoad.success;
